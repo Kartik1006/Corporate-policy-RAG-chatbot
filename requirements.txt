@@ -13,3 +13,4 @@ tiktoken>=0.7.0
 python-dotenv>=1.0.0
 PyMuPDF>=1.24.0
 langchain-text-splitters>=0.2.0
+protobuf==3.20.3
