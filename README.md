@@ -107,6 +107,20 @@ streamlit run app.py
 
 ---
 
+## How It Works (RAG Architecture)
+
+When a user asks a question, the application executes a complete Retrieval-Augmented Generation (RAG) pipeline:
+
+1. **User Query:** The user enters a question into the chat interface.
+2. **Query Vectorization:** The application converts the user's text question into a mathematical vector using the embedded `all-MiniLM-L6-v2` model.
+3. **Context Retrieval:** The query vector is compared against the embedded document chunks stored in the persistent `ChromaDB` vector database.
+   - It uses **Maximal Marginal Relevance (MMR)** to fetch the top 30 most similar chunks, and then filters them down to the 15 most *diverse* chunks to ensure a broad context.
+4. **Prompt Assembly:** The retrieved text chunks are compiled into a structured prompt alongside the user's original query and the ongoing chat history.
+5. **LLM Generation:** The massive context is securely sent to the selected Large Language Model (Groq's Llama 3.3 or Google's Gemini 2.5 Flash).
+6. **Response Output:** The LLM reads the context, synthesizes the facts, and returns the grounded answer to the user interface, effectively preventing hallucinations.
+
+---
+
 ## Project Structure
 
 ```
