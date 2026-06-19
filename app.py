@@ -979,10 +979,10 @@ def main():
         )
 
         suggestions = [
-            "What is the leave policy?",
-            "Explain the code of conduct",
-            "Remote work guidelines",
-            "Data privacy policy",
+            "How many paid sick days do employees get?",
+            "What expenses are covered for remote work?",
+            "How do I report a code of conduct violation?",
+            "What are the data privacy rules for vendors?",
         ]
         cols = st.columns(len(suggestions))
         for i, (col, suggestion) in enumerate(zip(cols, suggestions)):
@@ -1002,7 +1002,17 @@ def main():
                 )
 
     # ── Chat Input ──
-    if user_input := st.chat_input("Ask a question about corporate policies …"):
+    prompt = st.chat_input("Ask a question about corporate policies …")
+    
+    if prompt:
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+    # Generate response if the last message is from the user
+    if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
+        user_input = st.session_state.messages[-1]["content"]
+
         allowed, used, limit = check_token_limit(provider)
         if not allowed:
             st.error(
@@ -1010,10 +1020,6 @@ def main():
                 f"Switch providers or wait until tomorrow."
             )
             st.stop()
-
-        st.session_state.messages.append({"role": "user", "content": user_input})
-        with st.chat_message("user"):
-            st.markdown(user_input)
 
         chat_history = []
         for m in st.session_state.messages[:-1]:
