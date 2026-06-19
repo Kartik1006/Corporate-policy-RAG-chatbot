@@ -950,11 +950,14 @@ def main():
     )
 
     # Build retriever
-    search_kwargs: dict = {"k": 5}
+    search_kwargs: dict = {"k": 15, "fetch_k": 30}
     if selected_company != "All Companies":
         search_kwargs["filter"] = {"company": selected_company}
 
-    retriever = vector_store.as_retriever(search_kwargs=search_kwargs)
+    retriever = vector_store.as_retriever(
+        search_type="mmr",
+        search_kwargs=search_kwargs
+    )
     llm = get_llm(provider, temperature)
     rag_chain = build_rag_chain(llm, retriever)
 
