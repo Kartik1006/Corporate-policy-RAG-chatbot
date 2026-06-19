@@ -979,8 +979,8 @@ def main():
         )
 
         suggestions = [
-            "How many paid sick days do employees get?",
-            "What expenses are covered for remote work?",
+            "How many paid sick days do employees at Microsoft get?",
+            "How does Tesla handle labor disputes?",
             "How do I report a code of conduct violation?",
             "What are the data privacy rules for vendors?",
         ]
