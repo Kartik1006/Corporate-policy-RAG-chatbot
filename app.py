@@ -305,7 +305,7 @@ def get_llm(provider: str, temperature: float):
             model="llama-3.3-70b-versatile",
             api_key=api_key,
             temperature=temperature,
-            max_tokens=1024,
+            max_tokens=4096,
         )
     else:
         from langchain_google_genai import ChatGoogleGenerativeAI
@@ -315,7 +315,7 @@ def get_llm(provider: str, temperature: float):
             model="gemini-2.5-flash",
             google_api_key=api_key,
             temperature=temperature,
-            max_output_tokens=1024,
+            max_output_tokens=4096,
         )
 
 
@@ -327,7 +327,7 @@ You are an expert corporate policy assistant. Answer the user's question
 based **only** on the retrieved context below. If the context does not
 contain enough information to answer, say so clearly — do not fabricate.
 
-When referencing policies, mention the source document and company.
+Provide clear, structured responses. Do NOT explicitly reference the source documents by name (e.g., avoid saying "According to Doc 1" or "Based on the retrieved context"). Just provide the factual answer.
 
 ### Retrieved Context
 {context}
