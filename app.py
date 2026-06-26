@@ -491,44 +491,24 @@ button[kind="header"] span {
 
 
 
-/* ── Light theme tokens ── */
+/* ── Theme tokens (adaptive to Streamlit native theme) ── */
 :root, [data-testid="stAppViewContainer"] {
-    --bg-page: #f7f8fa;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f3f4f6;
-    --bg-inset: #f1f3f5;
-    --border: #e3e5e8;
-    --border-light: #eef0f2;
-    --text-1: #111827;
-    --text-2: #4b5563;
-    --text-3: #9ca3af;
-    --accent: #4f46e5;
-    --accent-soft: #eef2ff;
-    --ok-bg: #f0fdf4;  --ok-fg: #15803d;  --ok-bdr: #bbf7d0;  --ok-dot: #22c55e;
-    --err-bg: #fef2f2; --err-fg: #b91c1c; --err-bdr: #fecaca;
-    --bar-track: #e5e7eb;
+    --bg-page: var(--background-color);
+    --bg-card: var(--secondary-background-color);
+    --bg-card-hover: rgba(128, 128, 128, 0.1);
+    --bg-inset: rgba(128, 128, 128, 0.05);
+    --border: rgba(128, 128, 128, 0.2);
+    --border-light: rgba(128, 128, 128, 0.1);
+    --text-1: var(--text-color);
+    --text-2: rgba(128, 128, 128, 0.9);
+    --text-3: rgba(128, 128, 128, 0.7);
+    --accent: var(--primary-color);
+    --accent-soft: rgba(128, 128, 128, 0.1);
+    --ok-bg: rgba(34,197,94,0.1);  --ok-fg: #22c55e;  --ok-bdr: rgba(34,197,94,0.25);  --ok-dot: #22c55e;
+    --err-bg: rgba(239,68,68,0.1); --err-fg: #ef4444; --err-bdr: rgba(239,68,68,0.25);
+    --bar-track: rgba(128, 128, 128, 0.1);
     --bar-yellow: #eab308;
     --bar-red: #ef4444;
-}
-
-/* ── Dark theme ── */
-@media (prefers-color-scheme: dark) {
-  :root, [data-testid="stAppViewContainer"] {
-    --bg-page: #0e1117;
-    --bg-card: #1a1c23;
-    --bg-card-hover: #262833;
-    --bg-inset: #14161d;
-    --border: #2a2d38;
-    --border-light: #22252e;
-    --text-1: #e5e7eb;
-    --text-2: #9ca3af;
-    --text-3: #6b7280;
-    --accent: #818cf8;
-    --accent-soft: rgba(129,140,248,0.12);
-    --ok-bg: rgba(34,197,94,0.1);  --ok-fg: #4ade80;  --ok-bdr: rgba(34,197,94,0.25);  --ok-dot: #4ade80;
-    --err-bg: rgba(239,68,68,0.1); --err-fg: #f87171; --err-bdr: rgba(239,68,68,0.25);
-    --bar-track: #2a2d38;
-  }
 }
 
 .stApp { background-color: var(--bg-page); }
@@ -975,6 +955,10 @@ def main():
                 <div class="welcome-subtitle">
                     Ask questions about your corporate policies. Responses are grounded<br>
                     in your uploaded documents with source citations.
+                </div>
+                <div class="welcome-subtitle" style="margin-top: 1rem; font-size: 0.85rem; max-width: 600px; margin-left: auto; margin-right: auto; padding: 0.9rem; background: var(--bg-inset); border-radius: 8px; border: 1px solid var(--border-light); line-height: 1.5;">
+                    <strong style="color: var(--accent);">Note:</strong> The pre-loaded data consists of example documents with incomplete information.<br>
+                    This application is designed for you to train on your own data—upload your PDFs or text files in the sidebar to build a custom vector database in minutes!
                 </div>
             </div>
             """,
